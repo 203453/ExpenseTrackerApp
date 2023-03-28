@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_project_app/auth_controller.dart';
-import 'package:flutter_project_app/singup_page.dart';
+import 'package:flutter_project_app/controllers/auth_controller.dart';
+import 'package:flutter_project_app/pages/singup_page.dart';
 import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
@@ -63,9 +63,9 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       width: w,
                       height: h * 0.3,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage("img/loginimg.png"),
+                              image: AssetImage("assets/images/loginimg.png"),
                               fit: BoxFit.cover)),
                     ),
                     Container(
@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Bienvenido",
                             style: TextStyle(
                               fontSize: 56,
@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                             style: TextStyle(
                                 fontSize: 20, color: Colors.grey[500]),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 50,
                           ),
                           Container(
@@ -97,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                                 BoxShadow(
                                   blurRadius: 10,
                                   spreadRadius: 7,
-                                  offset: Offset(1, 1),
+                                  offset: const Offset(1, 1),
                                   color: Colors.grey.withOpacity(0.2),
                                 ),
                               ],
@@ -106,20 +106,20 @@ class _LoginPageState extends State<LoginPage> {
                               controller: emailController,
                               decoration: InputDecoration(
                                 hintText: "Correo electrónico",
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.email,
                                   color: Colors.deepPurple,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Container(
@@ -141,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                                 BoxShadow(
                                   blurRadius: 10,
                                   spreadRadius: 7,
-                                  offset: Offset(1, 1),
+                                  offset: const Offset(1, 1),
                                   color: Colors.grey.withOpacity(0.2),
                                 ),
                               ],
@@ -151,20 +151,20 @@ class _LoginPageState extends State<LoginPage> {
                               controller: passwordController,
                               decoration: InputDecoration(
                                 hintText: "Contraseña",
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.password,
                                   color: Colors.deepPurple,
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
                                 ),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.white,
                                     width: 1.0,
                                   ),
@@ -175,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(
@@ -193,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 70,
                     ),
                     GestureDetector(
@@ -205,13 +205,13 @@ class _LoginPageState extends State<LoginPage> {
                         height: h * 0.08,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          image: DecorationImage(
-                              image: AssetImage("img/loginbtn.png"),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/images/loginbtn.png"),
                               fit: BoxFit.cover),
                         ),
                         child: Center(
                           child: RichText(
-                            text: TextSpan(
+                            text: const TextSpan(
                               children: [
                                 TextSpan(
                                   text: "Iniciar sesión",
@@ -250,12 +250,12 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           TextSpan(
                             text: " Crear cuenta",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.blueAccent,
                               fontSize: 20,
                             ),
                             recognizer: TapGestureRecognizer()
-                              ..onTap = () => Get.to(() => SignUpPage()),
+                              ..onTap = () => Get.to(() => const SignUpPage()),
                           ),
                         ],
                       ),

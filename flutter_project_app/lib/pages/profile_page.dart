@@ -3,22 +3,19 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_project_app/auth_controller.dart';
+import 'package:flutter_project_app/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class WelcomePage extends StatefulWidget {
-  WelcomePage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
 
   @override
-  State<WelcomePage> createState() => _WelcomePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _ProfilePageState extends State<ProfilePage> {
   final user = FirebaseAuth.instance.currentUser!;
   String email = '';
   String username = '';
@@ -94,8 +91,8 @@ class _WelcomePageState extends State<WelcomePage> {
         "Ha ocurrido un error",
         backgroundColor: Colors.redAccent,
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.all(20),
-        titleText: Text(
+        margin: const EdgeInsets.all(20),
+        titleText: const Text(
           "Error al actualizar la imagen de usuario",
           style: TextStyle(
             color: Colors.white,
@@ -103,7 +100,7 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         messageText: Text(
           e.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -153,8 +150,8 @@ class _WelcomePageState extends State<WelcomePage> {
         "Ha ocurrido un error",
         backgroundColor: Colors.redAccent,
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.all(20),
-        titleText: Text(
+        margin: const EdgeInsets.all(20),
+        titleText: const Text(
           "Error al actualizar la imagen de usuario",
           style: TextStyle(
             color: Colors.white,
@@ -162,7 +159,7 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         messageText: Text(
           e.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -202,8 +199,8 @@ class _WelcomePageState extends State<WelcomePage> {
         "Ha ocurrido un error",
         backgroundColor: Colors.redAccent,
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.all(20),
-        titleText: Text(
+        margin: const EdgeInsets.all(20),
+        titleText: const Text(
           "Error al eliminar la imagen de usuario",
           style: TextStyle(
             color: Colors.white,
@@ -211,7 +208,7 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         messageText: Text(
           e.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -251,8 +248,8 @@ class _WelcomePageState extends State<WelcomePage> {
         "Ha ocurrido un error",
         backgroundColor: Colors.redAccent,
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.all(20),
-        titleText: Text(
+        margin: const EdgeInsets.all(20),
+        titleText: const Text(
           "Error actualizar el nombre de usuario",
           style: TextStyle(
             color: Colors.white,
@@ -260,7 +257,7 @@ class _WelcomePageState extends State<WelcomePage> {
         ),
         messageText: Text(
           e.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -296,7 +293,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       height: h * 0.3,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("img/signup.png"),
+                            image: AssetImage("assets/images/signup.png"),
                             fit: BoxFit.cover),
                       ),
                       child: Column(
@@ -327,7 +324,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                             return Center(
                                               child: CircularProgressIndicator(
                                                 valueColor:
-                                                    AlwaysStoppedAnimation<
+                                                    const AlwaysStoppedAnimation<
                                                             Color>(
                                                         Colors.lightBlueAccent),
                                                 value: loadingProgress
@@ -343,7 +340,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           },
                                         )
                                       : Image.asset(
-                                          'img/profile3.png',
+                                          'assets/images/profile3.png',
                                           width: 120,
                                           height: 120,
                                           fit: BoxFit.cover,
@@ -359,7 +356,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return AlertDialog(
-                                            content: Container(
+                                            content: SizedBox(
                                               height: 170,
                                               child: Column(
                                                 children: [
@@ -391,7 +388,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                       deleteImage(context);
                                                       Navigator.pop(context);
                                                     },
-                                                    leading: Icon(
+                                                    leading: const Icon(
                                                       Icons.delete,
                                                       color: Colors.redAccent,
                                                     ),
@@ -424,7 +421,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Container(
@@ -441,7 +438,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               color: Colors.black54,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           RichText(
@@ -449,7 +446,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               children: [
                                 WidgetSpan(
                                   child: Padding(
-                                    padding: EdgeInsets.only(right: 5),
+                                    padding: const EdgeInsets.only(right: 5),
                                     child: Icon(
                                       Icons.person,
                                       size: 20,
@@ -467,7 +464,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                 ),
                                 WidgetSpan(
                                   child: Padding(
-                                    padding: EdgeInsets.only(left: 20),
+                                    padding: const EdgeInsets.only(left: 20),
                                     child: GestureDetector(
                                       onTap: () {
                                         showDialog(
@@ -513,7 +510,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                   onPressed: () {
                                                     Navigator.pop(context);
                                                   },
-                                                  child: Text(
+                                                  child: const Text(
                                                     'Cancelar',
                                                   ),
                                                 ),
@@ -523,7 +520,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                     Navigator.pop(context);
                                                     _fetch();
                                                   },
-                                                  child: Text('Hecho'),
+                                                  child: const Text('Hecho'),
                                                 ),
                                               ],
                                             );
@@ -541,7 +538,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           RichText(
@@ -549,7 +546,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               children: [
                                 WidgetSpan(
                                   child: Padding(
-                                    padding: EdgeInsets.only(right: 5),
+                                    padding: const EdgeInsets.only(right: 5),
                                     child: Icon(
                                       Icons.email,
                                       size: 20,
@@ -570,7 +567,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 200,
                     ),
                     GestureDetector(
@@ -582,13 +579,13 @@ class _WelcomePageState extends State<WelcomePage> {
                         height: h * 0.08,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          image: DecorationImage(
-                              image: AssetImage("img/loginbtn.png"),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/images/loginbtn.png"),
                               fit: BoxFit.cover),
                         ),
                         child: Center(
                           child: RichText(
-                            text: TextSpan(
+                            text: const TextSpan(
                               children: [
                                 TextSpan(
                                   text: "Cerrar sesión",

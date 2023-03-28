@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_project_app/login_page.dart';
-import 'package:flutter_project_app/welcome_page.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter_project_app/pages/home_page.dart';
+import 'package:flutter_project_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,9 +20,9 @@ class AuthController extends GetxController {
 
   _initialScreen(User? user) {
     if (user == null) {
-      Get.offAll(() => LoginPage());
+      Get.offAll(() => const LoginPage());
     } else {
-      Get.offAll(() => WelcomePage());
+      Get.offAll(() => const HomePage());
     }
   }
 
@@ -50,8 +48,8 @@ class AuthController extends GetxController {
         "Ha ocurrido un error",
         backgroundColor: Colors.redAccent,
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.all(20),
-        titleText: Text(
+        margin: const EdgeInsets.all(20),
+        titleText: const Text(
           "Error al crear la cuenta",
           style: TextStyle(
             color: Colors.white,
@@ -59,7 +57,7 @@ class AuthController extends GetxController {
         ),
         messageText: Text(
           e.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
@@ -78,8 +76,8 @@ class AuthController extends GetxController {
         "Ha ocurrido un error",
         backgroundColor: Colors.redAccent,
         snackPosition: SnackPosition.TOP,
-        margin: EdgeInsets.all(20),
-        titleText: Text(
+        margin: const EdgeInsets.all(20),
+        titleText: const Text(
           "Error al iniciar sesión",
           style: TextStyle(
             color: Colors.white,
@@ -87,7 +85,7 @@ class AuthController extends GetxController {
         ),
         messageText: Text(
           e.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
