@@ -15,13 +15,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int pageIndex = 0;
+  int pageIndex = 4;
   List<Widget> pages = const[
     DailyPage(),
-    StatsPage(),
-    CreatBudgetPage(),
     BudgetPage(),
+    StatsPage(),  
     ProfilePage(),
+    CreatBudgetPage(), 
   ];
 
   @override
@@ -61,9 +61,9 @@ class _HomePageState extends State<HomePage> {
 
   Widget getFooter() {
     List<IconData> iconItems = [
-      Icons.calendar_today_outlined,
+      Icons.vertical_align_bottom,
+      Icons.vertical_align_top,
       Icons.align_vertical_bottom_rounded,
-      Icons.analytics_outlined,
       Icons.account_circle_outlined,
     ];
 
