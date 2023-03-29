@@ -285,9 +285,27 @@ class _WelcomePageState extends State<WelcomePage> {
             future: _fetchFuture,
             builder: ((context, snapshot) {
               if (snapshot.connectionState != ConnectionState.done) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return Scaffold(
+                    backgroundColor: Colors.white,
+                    body: Column(
+                      children: [
+                        Container(
+                          width: w,
+                          height: h * 0.3,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("img/signup.png"),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 200,
+                        ),
+                        const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ],
+                    ));
               } else {
                 return Column(
                   children: [
@@ -311,7 +329,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                 radius: 60,
                                 backgroundColor: Colors.white70,
                                 child: ClipOval(
-                                  child: imageUrl != null && imageUrl.isNotEmpty
+                                  child: imageUrl != '' && imageUrl.isNotEmpty
                                       ? Image.network(
                                           imageUrl,
                                           width: 120,

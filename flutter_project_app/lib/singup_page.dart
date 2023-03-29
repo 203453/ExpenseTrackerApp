@@ -137,7 +137,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               TextStyle(fontSize: 20, color: Colors.grey[500]),
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 30,
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -363,7 +363,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       text: "¿Ya tienes una cuenta?",
                       style: TextStyle(
                         color: Colors.grey[500],
-                        fontSize: 20,
+                        fontSize: 18,
                       ),
                       children: [
                         TextSpan(
@@ -372,7 +372,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           text: " Iniciar sesión",
                           style: TextStyle(
                             color: Colors.blueAccent,
-                            fontSize: 20,
+                            fontSize: 18,
                           ),
                         ),
                       ],
