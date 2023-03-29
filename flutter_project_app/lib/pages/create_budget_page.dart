@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +11,6 @@ class CreatBudgetPage extends StatefulWidget {
 }
 
 class _CreatBudgetPageState extends State<CreatBudgetPage> {
-  final amountController = TextEditingController();
-  final descriptionController = TextEditingController();
   final user = FirebaseAuth.instance.currentUser!;
   int activeCategory = 0;
   late List<Map<String, dynamic>> categories = [];
@@ -32,14 +29,13 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
         .toList();
   }
 
-  Future<void> addTransaction(
-  ) async {
+  Future<void> addTransaction() async {
     final currentUser = FirebaseAuth.instance.currentUser;
     final collectionRef = FirebaseFirestore.instance.collection('transactions');
     await collectionRef.add({
       'user_id': currentUser!.uid,
-      'description': descriptionController,
-      'mount': amountController,
+      'description': 'sjd',
+      'mount': 3349,
       'category': categories[activeCategory]['name'],
       'created_at': Timestamp.now(),
     });
@@ -51,18 +47,8 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
     getCategories();
   }
 
-    @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    amountController.dispose();
-    super.dispose();
-  }
-
   Widget getBody() {
     var size = MediaQuery.of(context).size;
-    if (categories.isEmpty) {
-      return const Center(child: CircularProgressIndicator());
-    }
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,24 +176,23 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
+              children:  [
+                 const Text(
                   "Descripción",
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 13,
                       color: Color(0xff67727d)),
                 ),
-                 TextField(
-                  controller: descriptionController,
+                const TextField(
                   cursorColor: black,
-                  style: const TextStyle(
+                  style:  TextStyle(
                       fontSize: 17, fontWeight: FontWeight.bold, color: black),
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                       hintText: "Ingresa una descripción",
                       border: InputBorder.none),
                 ),
-                const SizedBox(
+                 const SizedBox(
                   height: 20,
                 ),
                 Row(
@@ -217,8 +202,8 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                       width: (size.width - 140),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children:  [
-                          const Text(
+                        children: const [
+                           Text(
                             "Costo",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
@@ -226,31 +211,16 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                                 color: Color(0xff67727d)),
                           ),
                           TextField(
-                            controller: amountController,
                             cursorColor: black,
-                            style: const TextStyle(
+                            style:  TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
                                 color: black),
-                            decoration: const InputDecoration(
+                            decoration:  InputDecoration(
                                 hintText: "Ingresa el costo",
                                 border: InputBorder.none),
                           ),
                         ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: primary,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: const Icon(
-                        Icons.arrow_forward,
-                        color: white,
                       ),
                     ),
                   ],
@@ -262,7 +232,6 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

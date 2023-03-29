@@ -19,9 +19,9 @@ class _HomePageState extends State<HomePage> {
   List<Widget> pages = const[
     DailyPage(),
     StatsPage(),
+    CreatBudgetPage(),
     BudgetPage(),
     ProfilePage(),
-    CreatBudgetPage()
   ];
 
   @override

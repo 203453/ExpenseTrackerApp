@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_app/json/budget_json.dart';
+import 'package:flutter_project_app/json/daily_json.dart';
 import 'package:flutter_project_app/json/day_month.dart';
 import 'package:flutter_project_app/themes/colors.dart';
 
@@ -11,7 +12,6 @@ class BudgetPage extends StatefulWidget {
 }
 
 class _BudgetPageState extends State<BudgetPage> {
-  int activeDay = 3;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +20,8 @@ class _BudgetPageState extends State<BudgetPage> {
     );
   }
 
-  Widget getBody() {
+    Widget getBody() {
     var size = MediaQuery.of(context).size;
-
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -42,192 +41,144 @@ class _BudgetPageState extends State<BudgetPage> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "Budget",
+                    children: const[
+                       Text(
+                        "Historial de ingresos",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: black),
                       ),
-                      Row(
-                        children: const [
-                          Icon(
-                            Icons.add,
-                            size: 25,
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Icon(Icons.search)
-                        ],
-                      )
                     ],
                   ),
                   const SizedBox(
                     height: 25,
                   ),
-                  Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: List.generate(months.length, (index) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              activeDay = index;
-                            });
-                          },
-                          child: SizedBox(
-                            width: (MediaQuery.of(context).size.width - 40) / 6,
-                            child: Column(
-                              children: [
-                                Text(
-                                  months[index]['label'],
-                                  style: const TextStyle(fontSize: 10),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: activeDay == index
-                                          ? primary
-                                          : black.withOpacity(0.02),
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                          color: activeDay == index
-                                              ? primary
-                                              : black.withOpacity(0.1))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 12, right: 12, top: 7, bottom: 7),
-                                    child: Text(
-                                      months[index]['day'],
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w600,
-                                          color: activeDay == index
-                                              ? white
-                                              : black),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }))
                 ],
               ),
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 30,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Column(
-                children: List.generate(budgetJson.length, (index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                      color: white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: grey.withOpacity(0.01),
-                          spreadRadius: 10,
-                          blurRadius: 3,
-                          // changes position of shadow
-                        ),
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 25, right: 25, bottom: 25, top: 25),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          budgetJson[index]['name'],
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 13,
-                              color: const Color(0xff67727d).withOpacity(0.6)),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: List.generate(daily.length, (index) {
+              return Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: (size.width - 40) * 0.7,
+                        child: Row(
                           children: [
-                            Row(
-                              children: [
-                                Text(
-                                  budgetJson[index]['price'],
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: grey.withOpacity(0.1),
+                              ),
+                              child: Center(
+                                child: Image.asset(
+                                  daily[index]['icon'],
+                                  width: 30,
+                                  height: 30,
                                 ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 3),
-                                  child: Text(
-                                    budgetJson[index]['label_percentage'],
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 13,
-                                        color: const Color(0xff67727d)
-                                            .withOpacity(0.6)),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 3),
-                              child: Text(
-                                "\$5000.00",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13,
-                                    color: const Color(0xff67727d)
-                                        .withOpacity(0.6)),
                               ),
                             ),
+                            const SizedBox(width: 15),
+                            SizedBox(
+                              width: (size.width - 90) * 0.5,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    daily[index]['name'],
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        color: black,
+                                        fontWeight: FontWeight.w500),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    daily[index]['date'],
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        color: black.withOpacity(0.5),
+                                        fontWeight: FontWeight.w400),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
+                            )
                           ],
                         ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Stack(
+                      ),
+                      SizedBox(
+                        width: (size.width - 40) * 0.3,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Container(
-                              width: (size.width - 40),
-                              height: 4,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color:
-                                      const Color(0xff67727d).withOpacity(0.1)),
-                            ),
-                            Container(
-                              width: (size.width - 40) *
-                                  budgetJson[index]['percentage'],
-                              height: 4,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: budgetJson[index]['color']),
+                            Text(
+                              daily[index]['price'],
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15,
+                                  color: Colors.green),
                             ),
                           ],
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
-                ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 65, top: 8),
+                    child: Divider(
+                      thickness: 0.8,
+                    ),
+                  )
+                ],
               );
             })),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Row(
+              children: [
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 80),
+                  child: Text(
+                    "Total",
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: black.withOpacity(0.4),
+                        fontWeight: FontWeight.w600),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const Spacer(),
+                const Padding(
+                  padding: EdgeInsets.only(top: 5),
+                  child: Text(
+                    "\$1780.00",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: black,
+                        fontWeight: FontWeight.bold),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
           )
         ],
       ),

@@ -30,13 +30,13 @@ class _StatsPageState extends State<StatsPage> {
       {
         "icon": Icons.arrow_back,
         "color": blue,
-        "label": "Income",
+        "label": "Ingresos",
         "cost": "\$6593.75"
       },
       {
         "icon": Icons.arrow_forward,
         "color": red,
-        "label": "Expense",
+        "label": "Gastos",
         "cost": "\$2645.50"
       }
     ];
@@ -61,67 +61,17 @@ class _StatsPageState extends State<StatsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
                       Text(
-                        "Stats",
+                        "Estadisticas",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: black),
                       ),
-                      Icon(Icons.search)
                     ],
                   ),
                   const SizedBox(
                     height: 25,
                   ),
-                  Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: List.generate(months.length, (index) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              activeDay = index;
-                            });
-                          },
-                          child: SizedBox(
-                            width: (MediaQuery.of(context).size.width - 40) / 6,
-                            child: Column(
-                              children: [
-                                Text(
-                                  months[index]['label'],
-                                  style: const TextStyle(fontSize: 10),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: activeDay == index
-                                          ? primary
-                                          : black.withOpacity(0.02),
-                                      borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                          color: activeDay == index
-                                              ? primary
-                                              : black.withOpacity(0.1))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 12, right: 12, top: 7, bottom: 7),
-                                    child: Text(
-                                      months[index]['day'],
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w600,
-                                          color: activeDay == index
-                                              ? white
-                                              : black),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }))
                 ],
               ),
             ),
@@ -157,7 +107,7 @@ class _StatsPageState extends State<StatsPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
                           Text(
-                            "Net balance",
+                            "Balance",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 13,
