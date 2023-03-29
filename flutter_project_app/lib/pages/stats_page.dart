@@ -1,4 +1,3 @@
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project_app/json/day_month.dart';
@@ -24,7 +23,7 @@ class _StatsPageState extends State<StatsPage> {
     );
   }
 
-    Widget getBody() {
+  Widget getBody() {
     var size = MediaQuery.of(context).size;
 
     List expenses = [
@@ -60,8 +59,8 @@ class _StatsPageState extends State<StatsPage> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const[
-                       Text(
+                    children: const [
+                      Text(
                         "Stats",
                         style: TextStyle(
                             fontSize: 20,
@@ -156,18 +155,18 @@ class _StatsPageState extends State<StatsPage> {
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const[
-                           Text(
+                        children: const [
+                          Text(
                             "Net balance",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 13,
                                 color: Color(0xff67727d)),
                           ),
-                           SizedBox(
+                          SizedBox(
                             height: 10,
                           ),
-                           Text(
+                          Text(
                             "\$2446.90",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
