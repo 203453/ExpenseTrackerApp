@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_project_app/pages/home_page.dart';
 import 'package:flutter_project_app/pages/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project_app/pages/notverified_page.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
@@ -21,8 +22,10 @@ class AuthController extends GetxController {
   _initialScreen(User? user) {
     if (user == null) {
       Get.offAll(() => const LoginPage());
-    } else {
+    } else if (user.emailVerified == true) {
       Get.offAll(() => const HomePage());
+    } else {
+      Get.offAll(() => NotVerifiedPage());
     }
   }
 
@@ -32,6 +35,8 @@ class AuthController extends GetxController {
           .createUserWithEmailAndPassword(email: email, password: password)
           .then(
             (cred) => {
+              cred.user!
+                  .sendEmailVerification(), // Enviar correo de verificación
               FirebaseFirestore.instance
                   .collection('users')
                   .doc(cred.user!.uid)
@@ -67,7 +72,6 @@ class AuthController extends GetxController {
 
   void login(String email, password) async {
     try {
-      print('inicio sesion');
       await auth.signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
       print('error');
@@ -95,5 +99,10 @@ class AuthController extends GetxController {
 
   void logOut() async {
     await auth.signOut();
+  }
+
+  void verifyEmail() {
+    User? user = FirebaseAuth.instance.currentUser;
+    user!.sendEmailVerification();
   }
 }

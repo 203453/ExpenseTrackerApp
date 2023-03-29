@@ -1,5 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project_app/json/create_budget_json.dart';
 import 'package:flutter_project_app/themes/colors.dart';
 
 class CreatBudgetPage extends StatefulWidget {
@@ -11,20 +11,30 @@ class CreatBudgetPage extends StatefulWidget {
 
 class _CreatBudgetPageState extends State<CreatBudgetPage> {
   int activeCategory = 0;
-  final TextEditingController _budgetName =
-  TextEditingController(text: "Grocery Budget");
-  final TextEditingController _budgetPrice = TextEditingController(text: "\$1500.00");
+  late List<Map<String, dynamic>> categories = [];
+
+  Future<void> getCategories() async {
+    final firestoreInstance = FirebaseFirestore.instance;
+    final categoriesRef = firestoreInstance.collection('categories');
+    final querySnapshot = await categoriesRef.get();
+
+    categories = querySnapshot.docs
+        .map((doc) => {
+              'id': doc.id,
+              'icon': doc.get('icon'),
+              'name': doc.get('name'),
+            })
+        .toList();
+  }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: grey.withOpacity(0.05),
-      body: getBody(),
-    );
+  void initState() {
+    super.initState();
+    getCategories();
   }
 
   Widget getBody() {
-    var size = MediaQuery.of(context).size;
+        var size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,17 +55,14 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "Create budget",
+                    children: const[
+                       Text(
+                        "Agregar costos",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: black),
                       ),
-                      Row(
-                        children: const[Icon(Icons.search)],
-                      )
                     ],
                   ),
                 ],
@@ -65,7 +72,7 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
             child: Text(
-              "Choose category",
+              "Selecciona una categoría",
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -119,19 +126,20 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: grey.withOpacity(0.15)),
-                              child: Center(
-                                child: Image.asset(
-                                  categories[index]['icon'],
-                                  width: 30,
-                                  height: 30,
-                                  fit: BoxFit.contain,
-                                ),
-                              )),
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: grey.withOpacity(0.15)),
+                            child: Center(
+                              child: Image.network(
+                                categories[index]['icon'],
+                                width: 80,
+                                height:80,
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
                           Text(
                             categories[index]['name'],
                             style: const TextStyle(
@@ -156,19 +164,18 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "budget name",
+                  "Nombre",
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 13,
                       color: Color(0xff67727d)),
                 ),
-                TextField(
-                  controller: _budgetName,
+                const TextField(
                   cursorColor: black,
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 17, fontWeight: FontWeight.bold, color: black),
-                  decoration: const InputDecoration(
-                      hintText: "Enter Budget Name", border: InputBorder.none),
+                  decoration: InputDecoration(
+                      hintText: "Ingresa un nombre", border: InputBorder.none),
                 ),
                 const SizedBox(
                   height: 20,
@@ -180,23 +187,22 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
                       width: (size.width - 140),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Enter budget",
+                        children: const [
+                          Text(
+                            "Costo",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 13,
                                 color: Color(0xff67727d)),
                           ),
                           TextField(
-                            controller: _budgetPrice,
                             cursorColor: black,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,
                                 color: black),
-                            decoration: const InputDecoration(
-                                hintText: "Enter Budget",
+                            decoration: InputDecoration(
+                                hintText: "Ingresa el costo",
                                 border: InputBorder.none),
                           ),
                         ],
@@ -223,6 +229,14 @@ class _CreatBudgetPageState extends State<CreatBudgetPage> {
           )
         ],
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: grey.withOpacity(0.05),
+      body: getBody(),
     );
   }
 }

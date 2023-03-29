@@ -1,9 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_project_app/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
@@ -137,7 +133,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               TextStyle(fontSize: 20, color: Colors.grey[500]),
                         ),
                         const SizedBox(
-                          height: 40,
+                          height: 30,
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -363,7 +359,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       text: "¿Ya tienes una cuenta?",
                       style: TextStyle(
                         color: Colors.grey[500],
-                        fontSize: 20,
+                        fontSize: 18,
                       ),
                       children: [
                         TextSpan(
@@ -372,7 +368,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           text: " Iniciar sesión",
                           style: const TextStyle(
                             color: Colors.blueAccent,
-                            fontSize: 20,
+                            fontSize: 18,
                           ),
                         ),
                       ],

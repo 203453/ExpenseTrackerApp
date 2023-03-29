@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -282,9 +281,27 @@ class _ProfilePageState extends State<ProfilePage> {
             future: _fetchFuture,
             builder: ((context, snapshot) {
               if (snapshot.connectionState != ConnectionState.done) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return Scaffold(
+                    backgroundColor: Colors.white,
+                    body: Column(
+                      children: [
+                        Container(
+                          width: w,
+                          height: h * 0.3,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/images/signup.png"),
+                                fit: BoxFit.cover),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 200,
+                        ),
+                        const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ],
+                    ));
               } else {
                 return Column(
                   children: [
@@ -308,7 +325,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 radius: 60,
                                 backgroundColor: Colors.white70,
                                 child: ClipOval(
-                                  child: imageUrl != null && imageUrl.isNotEmpty
+                                  child: imageUrl != '' && imageUrl.isNotEmpty
                                       ? Image.network(
                                           imageUrl,
                                           width: 120,
