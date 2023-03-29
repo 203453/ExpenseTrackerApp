@@ -54,7 +54,7 @@ class _StatsPageState extends State<StatsPage> {
             ]),
             child: Padding(
               padding: const EdgeInsets.only(
-                  top: 60, right: 20, left: 20, bottom: 25),
+                  top: 60, right: 20, left: 20, bottom: 5),
               child: Column(
                 children: [
                   Row(
@@ -83,7 +83,7 @@ class _StatsPageState extends State<StatsPage> {
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Container(
               width: double.infinity,
-              height: 250,
+              height: 100,
               decoration: BoxDecoration(
                   color: white,
                   borderRadius: BorderRadius.circular(12),
@@ -126,16 +126,6 @@ class _StatsPageState extends State<StatsPage> {
                         ],
                       ),
                     ),
-                    Positioned(
-                      bottom: 0,
-                      child: SizedBox(
-                        width: (size.width - 20),
-                        height: 150,
-                        child: LineChart(
-                          mainData(),
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),

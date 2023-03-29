@@ -35,7 +35,7 @@ class _DailyPageState extends State<DailyPage> {
             ]),
             child: Padding(
               padding: const EdgeInsets.only(
-                  top: 60, right: 20, left: 20, bottom: 25),
+                  top: 60, right: 20, left: 20, bottom: 5),
               child: Column(
                 children: [
                   Row(
